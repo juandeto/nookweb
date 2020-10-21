@@ -325,6 +325,8 @@ input[name="formaDePago"]:checked + .selectorPago:after{
 
 .envioMessage{
     color: #404145;
+    background-color: rgb(245, 245, 245);
+    padding: 8px;
 }
 
 .formaDePagoMessage{
@@ -332,6 +334,10 @@ input[name="formaDePago"]:checked + .selectorPago:after{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: rgb(245, 245, 245);
+    border-radius: 5px;
+    padding: 8px;
+    margin-top: 5px;
 }
 
 .precioFinalMessage{
