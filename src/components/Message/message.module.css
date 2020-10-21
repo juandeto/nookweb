@@ -1,0 +1,46 @@
+.Message > p{
+    letter-spacing: 0.11rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: #404145;
+    font-weight: 600;
+    text-align: center;
+}
+
+.Message > a {
+    text-decoration: none;
+    cursor: pointer;
+   
+}
+
+.Message > a > button{
+    cursor: pointer;
+    margin: 30px auto;
+    display: block;
+    color: white;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 6px;
+    outline: none;
+    box-shadow: 0 0 20px #eee;
+    width: 100%;
+}
+.procederAlPagoBtn,
+.seguirComprandoBtn{
+    background-color: #404145;
+    border: solid 2px #404145;
+}
+
+.seguirComprandoBtn:hover,
+.procederAlPagoBtn:hover{
+    transition: all 0.3s ease;
+    background-color: white;
+}
+.procederAlPagoBtn:hover,
+.seguirComprandoBtn:hover{
+    border: solid 2px #404145;
+    color: #404145;
+}
+

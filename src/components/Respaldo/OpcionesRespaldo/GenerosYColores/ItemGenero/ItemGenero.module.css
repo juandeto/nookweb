@@ -1,0 +1,25 @@
+.item{
+    display: flex;
+    padding: 25px;
+    justify-content: center;
+    letter-spacing: 0.11rem;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: #404145;
+    border-bottom: 1px solid rgba(64, 65, 69, 0.1);
+    cursor: pointer;
+}
+
+.item:hover{
+    background-color: beige;
+}
+
+.fill{
+    background-color: beige;
+    }
+
+    .tipo{
+        width: 120px;
+        text-align: left;
+    }
+    

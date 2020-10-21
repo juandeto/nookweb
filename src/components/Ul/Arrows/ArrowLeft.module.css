@@ -1,0 +1,11 @@
+
+.ArrowLeft
+{   height: 30px;
+    position: absolute;
+    top: 14px;
+    color: #404145;
+    cursor: pointer;
+    z-index: 2;
+    left: 7%;
+}
+
