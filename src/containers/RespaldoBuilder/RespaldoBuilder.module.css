@@ -1,0 +1,85 @@
+.RespaldoBuilder{
+    max-height: 90vh;
+    min-height: 80vh;
+}
+
+.RespaldoBuilder .control{
+    margin: 0 auto;
+    max-width: 600px;
+    border-top: 1px solid rgba(64, 65, 69, 0.1);
+    position: relative;
+    min-height: 50vh;
+    overflow-y: scroll;
+}
+
+
+
+.precioTotal{
+    margin: 30px auto 10px auto;
+    letter-spacing: 0.11rem;
+    font-size: 0.9rem;
+    color: #404145;
+    text-align: center;
+    display: block;
+    align-self: flex-start;
+}
+
+.precioConForma{
+    margin: 15px auto 5px 10px;
+    text-align: center;
+}
+
+.croquisRespaldo{
+    display: flex;
+    flex-direction:column ;
+    justify-content: center;
+}
+
+.ArrowContainer{
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+@media (min-width: 500px){
+
+    .RespaldoBuilder{
+        display: grid;
+        grid-template-columns: 40% 1fr;
+        grid-template-rows: auto 1fr;
+        border-right: 1px solid #ccc;
+        max-height: 90vh;
+    }
+
+    .RespaldoBuilder .control{
+        grid-column: 1;
+        grid-row: 2;
+        max-height: 100%;
+        overflow-y: auto;
+        height: 100%;
+        min-height: 77vh;
+        width: 100%;
+        border-top: 1px ;
+        overflow-y: scroll;
+        border-right: 1px solid #ccc;
+        justify-self: start;
+        align-self: start;
+    }
+
+
+    .croquisRespaldo{
+        grid-column: 2;
+        grid-row: 2;
+        max-height: 90vh;
+    }
+    .RespaldoBuilder .precioTotal{
+        font-size: 1rem;
+    }
+
+    .ArrowContainer{
+        visibility: hidden;
+    }
+}
