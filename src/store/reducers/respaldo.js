@@ -153,11 +153,11 @@ const modelos = [
   },
   {
     tipo: "Con Marco en Paraiso Macizo",
-    precio: 3250,
+    precio: 12000,
   },
   {
     tipo: "Con Marco en Paraiso Macizo y Botones",
-    precio: 3250,
+    precio: 13800,
   },
 ];
 

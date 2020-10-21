@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import Logo from './../../Ul/Logo/Logo';
 import { connect } from 'react-redux';
@@ -6,21 +6,35 @@ import { Link } from 'react-router-dom';
 import classes from './MensajeTrasPago.module.css';
 import MercadoPagoForm from './MercadoPago/MercadoPagoForm';
 
-function SeccionDePago(props) {
-    return (
-            <div className={classes.MensajeTrasPago}>
+
+class SeccionDePago extends Component {
+  componentDidMount() {
+    const script = document.createElement("script");
+    script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+    script.async = true;
+    // datapreferenceid='<%= global.id %>';
+    const buttonMp=document.getElementsByClassName('butonMercadopago')[0];
+    buttonMp.appendChild(script);
+  }
+  render() { 
+    const mensajeTransferencia =<p className={classes.paragraph}><strong>Te hemos enviado a tu email los datos para realizar la transferencia</strong></p>;
+    return ( 
+       <div className={classes.MensajeTrasPago}>
               <span className={classes.logo}>
                 <Logo />
               </span>
-                <h3 className={classes.title}>¡Gracias por tu compra!</h3>
+              {this.props.formaDePago === 'Transferencia Bancaria' ? mensajeTransferencia : <span style={{margin: "5px auto"}} className="butonMercadopago"></span>}
+                
                 <section className={classes.section}>
-                <p className={classes.paragraph}>Te hemos enviado a tu email ({props.datosUsuario.length > 0 ? props.datosUsuario[0].orderData.email : null}) los datos de tu compra (caracteristicas, plazos, entrega, etc.).</p>
-                {props.formaDePago === 'MercadoPago' ? <MercadoPagoForm precio={props.datosUsuario[0]?.orderData?.price}/> :null}
-                <p className={classes.paragraph}>Pronto nos estaremos comunicando con vos al {props.datosUsuario.length > 0 ? props.datosUsuario[0].orderData.telefono : null}. Si tenes alguna duda <Link to="/contacto">no dudes en contactarnos</Link></p>
+                <p className={classes.paragraph}>Te hemos enviado a tu email ({this.props.datosUsuario.length > 0 ? this.props.datosUsuario[0].orderData.email : null}) los datos de tu compra (caracteristicas, plazos, entrega, etc.).</p>
+
+                <p className={classes.paragraph}>Pronto nos estaremos comunicando con vos al {this.props.datosUsuario.length > 0 ? this.props.datosUsuario[0].orderData.telefono : null}. Si tenes alguna duda <Link to="/contacto">no dudes en contactarnos</Link></p>
                 </section>
             </div>
-    )
+     );
+  }
 }
+ 
 
 const mapStateToProps = (state) => {
     return {

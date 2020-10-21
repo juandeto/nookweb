@@ -8,6 +8,7 @@ export const updateObject = (oldObject, updatedProperties) => {
 
 
 export const setPrice = (state, key, arrayOption, precio)=>{
+   
     let newPrecio=null;
     if(key !== 'no seleccionado'){
             let index =arrayOption.findIndex(item => item.tipo === key || item.tamanio=== key)
