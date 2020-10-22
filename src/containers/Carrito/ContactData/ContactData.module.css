@@ -342,6 +342,7 @@ input[name="formaDePago"]:checked + .selectorPago:after{
 
 .precioFinalMessage{
     color: #404145;
+    
 }
 
 .ModalBtn{
@@ -353,6 +354,7 @@ input[name="formaDePago"]:checked + .selectorPago:after{
     padding: 7px 0;
     font-weight: 600;
     letter-spacing: 0.09rem;
+    cursor: pointer;
 }
 
 .ModalBtn:hover{

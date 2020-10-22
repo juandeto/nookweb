@@ -8,14 +8,7 @@ import MercadoPagoForm from './MercadoPago/MercadoPagoForm';
 
 
 class SeccionDePago extends Component {
-  componentDidMount() {
-    const script = document.createElement("script");
-    script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
-    script.async = true;
-    // datapreferenceid='<%= global.id %>';
-    const buttonMp=document.getElementsByClassName('butonMercadopago')[0];
-    buttonMp.appendChild(script);
-  }
+
   render() { 
     const mensajeTransferencia =<p className={classes.paragraph}><strong>Te hemos enviado a tu email los datos para realizar la transferencia</strong></p>;
     return ( 
@@ -23,7 +16,7 @@ class SeccionDePago extends Component {
               <span className={classes.logo}>
                 <Logo />
               </span>
-              {this.props.formaDePago === 'Transferencia Bancaria' ? mensajeTransferencia : <span style={{margin: "5px auto"}} className="butonMercadopago"></span>}
+    {this.props.formaDePago === 'Transferencia Bancaria' ? mensajeTransferencia : <MercadoPagoForm />}
                 
                 <section className={classes.section}>
                 <p className={classes.paragraph}>Te hemos enviado a tu email ({this.props.datosUsuario.length > 0 ? this.props.datosUsuario[0].orderData.email : null}) los datos de tu compra (caracteristicas, plazos, entrega, etc.).</p>

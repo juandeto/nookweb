@@ -1,6 +1,7 @@
 
 .title{
     text-align: center;
+    color: #404145;
 }
 
 .orderContainer{
@@ -26,21 +27,30 @@
     display: flex;
     justify-content: space-around;
 }
-.btns > a{
-    border: 2px solid  rgb(182, 95, 13);
-    border-radius: 5px;
-    text-decoration: none;
+.btns {
     margin: 20px;
     height: 50px;
     display: flex;
     align-items: center;
 }
 
-
+.saveBtn{
+    border-radius: 10px;
+    display: inline-block;
+    background-color: greenyellow;
+    color: #404145;
+    font-weight: bold;
+    padding: 10px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    height: 100%;
+}
 .logoutBtn{
+    border-radius: 10px;
+    border: 2px solid  rgb(182, 95, 13);
+    text-decoration: none;
     display: inline-block;
     background-color: white;
-    border: none;
     color: rgb(182, 95, 13);
     font-weight: bold;
     padding: 10px;
@@ -54,108 +64,22 @@
     color: white;
 }
 
+.AdminLayout > h3{
+    color: #404145;
+}
 
-.orden{
+.pagadosContainer{
+    max-width: 120vh;
     width: 100%;
+    min-height: 100px;
     border: 1px solid #ccc;
+    margin: 20px auto;
 }
 
-
-.orden>summary{
-    width: calc(100% - 20px);
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 1rem;
-    font-weight: 500;
-    background-image: linear-gradient(white, #ccc);
-    cursor: pointer;
-    outline: none;
-    text-align: center;
-}
-
-.orden>summary:hover{
-    background-image: linear-gradient(white,#ccc, #ccc, #ccc);
-}
-
-.nombre{
-    justify-self:flex-start;
-    width: 190px;
-    text-align: left;
-}
-
-.date{
-    width: 290px;
-    text-align: left;
-}
-
-.orden>summary::-webkit-details-marker {
-    color: rgb(99, 98, 98);
-    background-color: transparent;
-    height: 20px;
-    margin-right: 0;
-}
-
-.dataOrden{
-    display: flex;
-    flex-direction: column;
-    height: auto;
+.completeOrdersContainer{
+    max-width: 120vh;
     width: 100%;
- 
-}
-
-.nopagado{
-    color: red ;
-    font-size: 1rem;
-}
-
-.pagado{
-    color: green !important;
-    
-}
-
-.noentregado{
-    border-top: 1px solid #ccc;
-    color: red;
-    font-size: 1rem;
-    width: calc(100% - 20px);
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-}
-
-.entregado{
-    color: green !important;
-}
-
-.pagosContainer{
-    width: calc(100% - 20px);
-    border-top: 1px solid #ccc;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    cursor: pointer;
-}
-
-.formaDePago{
-    padding: 10px;
-    width: calc(100% - 20px);
-}
-
-.saveBtn{
-    display: inline-block;
-    background-color: white;
-    border: 2px solid rgb(30, 105, 8);;
-    color: rgb(30, 105, 8);
-    font-weight: bold;
-    padding: 10px;
-    transition: all 0.4s ease;
-    cursor: pointer;
-    margin: 20px;
-    height: 50px;
-}
-
-.saveBtn:hover{
-    background-color:  rgb(30, 105, 8);
-    color: white;
+    min-height: 100px;
+    border: 1px solid #ccc;
+    margin: 20px auto;
 }

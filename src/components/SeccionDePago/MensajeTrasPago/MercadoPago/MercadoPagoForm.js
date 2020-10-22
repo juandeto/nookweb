@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import classes from './MercadoPagoForm.module.css';
 
 function MercadoPagoForm(props) {
+  useEffect(() => {
+ 
+      const script = document.createElement("script");
+      script.src = "https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js";
+      script.async = true;
+      // datapreferenceid='<%= global.id %>';
+      const buttonMp=document.getElementsByClassName('butonMercadopago')[0];
+      buttonMp.appendChild(script);
+  }, [])
   return (
-    <form className={classes.MercadoPagoForm} action="https://www.my-site.com/process-payment" method="POST">
-      <h4>Ingrese aquí para realizar su pago</h4>
-      <button type="submit">Pagar</button>
-      <script
-        src="https://www.mercadopago.com.ar/integrations/v1/web-tokenize-checkout.js"
-        data-public-key="apikey publica"
-        data-transaction-amount={props.precio}
-      ></script>
-    </form>
+    <span 
+    style={{margin: "5px auto"}}
+    className="butonMercadopago"></span>
   );
 }
 
