@@ -1,12 +1,12 @@
 import React from "react";
 
 import { withRouter } from "react-router";
-import classes from "./Header.module.css";
-import Mapa from "./../Mapa/Mapa";
-import ArrowRight from './../../Ul/Arrows/ArrowRight';
-import ArrowLeft from './../../Ul/Arrows/ArrowLeft';
+import classes from "./RoutesHandler.module.css";
+import Mapa from "../Mapa/Mapa";
+import ArrowRight from '../../Ul/Arrows/ArrowRight';
+import ArrowLeft from '../../Ul/Arrows/ArrowLeft';
 
-function Header(props) {
+function RoutesHandler(props) {
 
   const routes = [
     "Formas",
@@ -38,4 +38,4 @@ function Header(props) {
   );
 }
 
-export default withRouter(Header);
+export default withRouter(RoutesHandler);

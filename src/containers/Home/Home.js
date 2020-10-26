@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
+import { Link } from 'react-router-dom';
 import classes from './Home.module.css';
-import Logo from './../../components/Ul/Logo/Logo';
 import NavigationItemsDesktop from './../../components/Navigation/NavigationItemsDesktop/NavigationItemDesktop';
 
 class Home extends Component {
@@ -26,10 +26,11 @@ class Home extends Component {
             <nav className={classes.DesktopOnly}>
                <NavigationItemsDesktop showSubMenu={this.state.showSubMenu} showSubmenuHandler={this.showSubMenuHandler}/>
             </nav>
+            <Link className={classes.respaldoBuilderLink} to="/respaldo-options/respaldo-builder">
                 <div className={classes.container}>
-                    <Logo />
-                    <h3>Respaldos a tu medida</h3>
+                    <h3>Personaliza tu respaldo</h3>
                 </div>
+            </Link>
             </div>
          );
     }

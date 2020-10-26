@@ -25,6 +25,7 @@ const Tachas = (props) => {
               modelo={ejemplar}
               selectTipoDeTacha={props.selectTipoDeTacha}
               selectedTacha={props.selectedTacha}
+              tipoDeTacha={props.tipoDeTacha}
             />
           ))}
         </ul>

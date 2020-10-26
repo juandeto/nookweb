@@ -245,12 +245,12 @@ export const ColorDeFondo = (nombre) => {
       'Gris 9': "#888381",
       'Negro 11':"#111",
       'Beige 7': "#d6b27a",
-      'Crudo Paul': "#f8f7df",
+      'Crudo Paul': "#ede5b0",
       'Beige Paul': "#f5e29e",
       'Lino Paul': "#e2ce9d",
       'Tostado': "#704f43",
-      'Azul Paul': "#3d77ae",
-      'Gris Paul': "#dcd5cb",
+      'Azul Paul': "#496988",
+      'Gris Paul': "#d2c9bc",
       'Topo': "#5d5c62",
     }
     

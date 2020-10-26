@@ -15,7 +15,7 @@
 }
 
 .Logo > h1{
-    font-size:2.5rem;
+    font-size:3.5rem;
     font-family: 'Dancing Script', cursive;
     color: #404145;
     text-align: center;
@@ -26,7 +26,7 @@
 .Logo > h2{
     color: #404145;
     text-transform: uppercase;
-    font-size: 0.75rem;
+    font-size: 1rem;
     letter-spacing: 0.10rem;
     margin-block-end: 1.30em;
     margin-block-start: 0.10em;
@@ -34,6 +34,6 @@
 
 @media (min-width: 800px){
     .Logo > h2{
-        font-size: 0.8rem;
+        font-size: 1rem;
     }
 }

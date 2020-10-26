@@ -7,9 +7,13 @@ import TusorRayado from './ColorDeFondo/TusorRayado/TusorRayado';
 
 function Croquis(props) {
   
+  
   return <div className={classes.Croquis} >
     
-      <DibujoFormas respaldo={props.respaldo}>
+      <DibujoFormas 
+      id="dibujoFormas" 
+      xAxis={props.xAxis} yAxis={props.yAxis}
+      respaldo={props.respaldo}>
         {
           props.respaldo.genero === 'Tusor Rayado' ? <TusorRayado respaldo={props.respaldo}/>
           : null

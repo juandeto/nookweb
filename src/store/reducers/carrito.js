@@ -6,7 +6,7 @@ const initialState ={
     show: false,
     totalPrice: 0,
     loading: false,
-    orders:[],
+    order:[],
     formaDePago: null,
     formaDeEnvio: null,
     envioAlInterior: false
@@ -68,7 +68,7 @@ const reducer = (state= initialState, action) => {
     case actionTypes.CREATE_ORDER:
                 return{
                     ...state,
-                    orders: [...state.orders, action.order]
+                    order: action.order
                 }
     case actionTypes.FORMA_DE_PAGO:
         let descuento=0.8;
@@ -106,6 +106,9 @@ const reducer = (state= initialState, action) => {
                     ...state,
                     formaDeEnvio: action.formaDeEnvio
                 }
+   case actionTypes.UNMOUNT_CARRITO:
+                    return state=initialState;
+                    
         default:
             return state;
     }

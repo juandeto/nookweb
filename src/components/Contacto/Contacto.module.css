@@ -5,11 +5,15 @@
 .title{
     text-align: center;
     color: #404145;
-    font: 1.5rem 0.12rem;
+    font-size: 1.5rem 0.12rem;
+    display: inline-block;
+    margin: auto;
 }
 
+
+
 .container{
-    width: 40vh;
+    width: calc(60vh - 30px);
     margin: 30px auto;
     padding: 35px 15px;
 }

@@ -12,6 +12,7 @@ import CardOptionsEnvio from './../../../components/Ul/CardOptionsEnvio/CardOpti
 import CardOptionsPagos from './../../../components/Ul/CardOptionPagos/CardOptionsPagos';
 import * as actions from "./../../../store/actions/index";
 import Modal from './../../../components/Ul/Modal/Modal';
+import CurrencyFormat from 'react-currency-format';
 
 import moment from "moment";
 
@@ -313,7 +314,7 @@ class ContactData extends Component {
         </button>
         <Modal show={this.state.showPriceModal} modalClosed={this.showPriceModalHandler}>
           <div className={classes.pagoMessage}>
-        <div className={classes.envioMessage}>Envio: {this.props.formaDeEnvio}
+        <div className={classes.envioMessage}>Forma de Envío: {this.props.formaDeEnvio}
         {
         this.state.orderForm.provincia.value !== 'G.B.A (Gran Buenos Aires)' || this.state.orderForm.provincia.value ===  "C.A.B.A" ?
         <span>+ $400</span> : null
@@ -325,7 +326,20 @@ class ContactData extends Component {
        <div className={classes.formaDePagoMessage}>Forma de Pago: {this.props.formaDePago}
        {this.props.formaDePago === "Transferencia Bancaria" ? <span>- 20%</span> : null}
        </div>
-      <h3 className={classes.precioFinalMessage}>Precio Final: {this.props.price}</h3>
+       <CurrencyFormat 
+                renderText={(value)=>{
+                    return(
+               <h3 className={classes.precioFinalMessage}>Precio Final: {value}</h3>
+                        )
+                }}
+                decimalScale={2}
+                value={this.props.price} //Homework
+                displayType={"text"}
+                thousandSeparator={true}
+                prefix={"$"}
+                fixedDecimalScale={true}
+            />
+      
           </div>
           <button className={classes.ModalBtn}onClick={this.orderHandler}>
             Ir a Pagar

@@ -11,6 +11,7 @@ function Carrito(props) {
     if(props.basket.length >0 ){
      infoCarrito= props.basket.map((item, i)=> {
           return(
+              
               <div key={i} className={classes.card}>
                   <p>Modelo y Forma:{item.modelo}, {item.forma}</p>
                     <p>Genero y color: {item.genero}, color {item.color}</p>
@@ -56,6 +57,22 @@ function Carrito(props) {
             <div 
             className={props.show ? arrayClasses.join(' '): arrayClasses[0]} >
                 {infoCarrito}
+                {props.basket.length >0 ?
+                 <CurrencyFormat 
+                 renderText={(value)=>{
+                     return(
+                <p className={classes.totalPrice}>Total ({props.basket.length} producto): {value}</p>
+                         )
+                 }}
+                 decimalScale={2}
+                 value={props.totalPrice} //Homework
+                 displayType={"text"}
+                 thousandSeparator={true}
+                 prefix={"$"}
+                 fixedDecimalScale={true}
+             />
+                 
+                : null}
             {props.basket.length >0 ? <Link to="/carrito"><button onClick={() =>props.showInfo()}>Ir al carrito</button></Link> : null}
             </div>
         </div>
@@ -65,7 +82,8 @@ function Carrito(props) {
 const mapStateToProps = state =>{
     return{
         basket: state.carrito.basket,
-        show: state.carrito.show
+        show: state.carrito.show,
+        totalPrice: state.carrito.totalPrice
     }
 }
 

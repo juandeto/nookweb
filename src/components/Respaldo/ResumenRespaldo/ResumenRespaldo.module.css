@@ -39,6 +39,7 @@
 }
 
 .listaPrincipal{
+    position: relative;
     text-align: center;
     list-style: none;
     padding: 15px 10px;
@@ -155,6 +156,12 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 input[type=number] { -moz-appearance:textfield; }
+
+
+.croquisContainer{
+max-width: 300px;
+overflow: hidden;
+}
 
 
 @media (min-width: 800px){

@@ -3,11 +3,10 @@ import React, { Component } from "react";
 import withErrorHandler from './../../hoc/withErrorHandler/withErrorHandler';
 import classes from "./AdminLayout.module.css";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
-import DataRespaldo from "./../../components/Admin/DataRespaldo/DataRespaldo";
-import DataCliente from "./../../components/Admin/DataCliente/DataCliente";
 import Spinner from "./../../components/Ul/Spinner/Spinner";
+import ItemOrder from './../../components/Admin/ItemOrder/ItemOrder';
 
 class AdminLayout extends Component {
   state = {
@@ -17,6 +16,8 @@ class AdminLayout extends Component {
 
   componentDidMount() {
     this.setState({ loading: true });
+
+    //obtenemos las ordenes
     axios
       .get(
         "https://nookweb-5fb61.firebaseio.com/orders.json?auth=" +
@@ -26,11 +27,12 @@ class AdminLayout extends Component {
         let data;
         let arrayOrders = [...this.state.orders];
         for (data in response.data) {
-
           let obj = response.data[data];
           obj.id=data
           arrayOrders.push(obj);
         }
+
+        //epujamos las ordenes al estado con un id
         this.setState({ orders: arrayOrders });
         this.setState({ loading: false });
       })
@@ -40,52 +42,93 @@ class AdminLayout extends Component {
       });
   }
 
+  checkout=() =>{
+    return <Redirect to="/logout"/>
+  }
 
+  orderPagoHandler = (id) => {
+    let arrayOrders = [...this.state.orders];
+    let index = arrayOrders.findIndex(order => order.id === id);
+    arrayOrders[index].pagado = !this.state.orders[index].pagado;
+
+    this.setState({orders: arrayOrders})
+
+  }
+
+  formaDeEnvioHandler = (id) =>{
+    let arrayOrders = [...this.state.orders];
+    let index = arrayOrders.findIndex(order => order.id === id);
+    arrayOrders[index].entregado = !this.state.orders[index].entregado; 
+    this.setState({orders: arrayOrders})
+  }
+
+  deleteOrderHandler = (order) =>{
+    let arrayOrders = [...this.state.orders];
+    arrayOrders=arrayOrders.filter(orden => orden.id !== order.id);
+    console.log(arrayOrders);
+    this.setState({orders: arrayOrders})
+
+    let url=`https://nookweb-5fb61.firebaseio.com/orders/${order.id}.json`;
+    axios.delete(url, order)
+    .then(response => console.log(response))
+    .catch(error => console.log(error))
+  }
+
+  saveChanges = (order) =>{
+    let url=`https://nookweb-5fb61.firebaseio.com/orders/${order.id}.json`;
+    axios.put(url, order)
+    .then(response => '')
+    .catch(error => console.log(error))
+  }
 
   render() {
-    let clasesPago = [classes.nopagado];
-    let clasesEntregado = [classes.noentregado];
 
     let orders = this.state.orders.map((order, i) => {
-      if (order.pagado) {
-        clasesPago.push(classes.pagado);
-      }
-      if (order.entregado) {
-        clasesEntregado.push(classes.entregado);
-      }
-      let pagado = (
-        <React.Fragment>
-          <span className={clasesPago.join(" ")}>{order.pagado ? 'PAGADO' :'NO PAGADO'}</span>
-          <span >{order.pagado ?'cambiar a NO PAGADO':'cambiar a PAGADO'}</span>
-        </React.Fragment>
-      );
-      
-      let entregado = (
-        <label className={clasesEntregado.join(" ")}>
-          {order.entregado ? "ENTREGADO" : "NO ENTREGADO"}
-          <input type="checkbox"  />
-        </label>
-      );
-
-      return (
-        <details className={classes.orden} key={i}>
-          <summary>
-            <span className={classes.nombre} >{order.orderData.nombre}</span>
-            <span className={classes.date}>{order.date}</span>
-          </summary>
-          <div className={classes.dataOrden}>
-          <div className={classes.formaDePago}>Precio Final de la orden: ${order.price}</div>
-            <div className={classes.pagosContainer}>{pagado}</div>
-            <div className={classes.formaDePago}>Forma de pago: {order.formaDePago}</div>
-            <div className={classes.formaDePago}>Forma de Envio: {order.formaDeEnvio}</div>
-            {entregado}
-            <DataRespaldo basket={order.basket} />
-            <DataCliente cliente={order.orderData} />
-
-          </div>
-        </details>
-      );
+      let item=null
+        if(!order.pagado && !order.entregado){
+          
+         item=<ItemOrder 
+          key={i}
+          order={order} 
+          orderPagoHandler={this.orderPagoHandler}
+          formaDeEnvioHandler={this.formaDeEnvioHandler}
+          deleteOrderHandler={this.deleteOrderHandler}
+          saveChanges={this.saveChanges} />
+          
+        }
+        return item;
     });
+    let payOrders = this.state.orders.map((order, i) => {
+      let item=null
+      if(order.pagado && !order.entregado){
+       
+        item=<ItemOrder 
+        key={i}
+        order={order} 
+        orderPagoHandler={this.orderPagoHandler}
+        formaDeEnvioHandler={this.formaDeEnvioHandler}
+        deleteOrderHandler={this.deleteOrderHandler}
+        saveChanges={this.saveChanges} />
+        
+      }
+      return item
+
+  });
+
+  let completeOrders = this.state.orders.map((order, i) => {
+    let item=null
+    if(order.pagado && order.entregado){
+      item= <ItemOrder 
+      key={i}
+      order={order} 
+      orderPagoHandler={this.orderPagoHandler}
+      formaDeEnvioHandler={this.formaDeEnvioHandler}
+      deleteOrderHandler={this.deleteOrderHandler}
+      saveChanges={this.saveChanges} />
+      
+    }
+  return item
+});
 
     if (this.state.loading) {
       return <Spinner />;
@@ -95,14 +138,15 @@ class AdminLayout extends Component {
       <div className={classes.AdminLayout}>
         <h2 className={classes.title}>Admin</h2>
         <div className={classes.btns}>
-        
         {this.props.token ? (
-          <Link to="logout">
-            <button className={classes.logoutBtn}>Logout</button>
-          </Link>
+            <button onClick={this.checkout} className={classes.logoutBtn}>Logout</button>
         ) : null}
         </div>
         <div className={classes.orderContainer}>{orders}</div>
+        <h3>Ordenes Pagadas</h3>
+        <div className={classes.pagadosContainer}>{payOrders}</div> 
+        <h3>Ordenes Pagadas y Entregadas</h3>
+         <div className={classes.completeOrdersContainer}>{completeOrders}</div> 
       </div>
     );
   }

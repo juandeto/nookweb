@@ -5,6 +5,7 @@ import Croquis from './Croquis/Croquis';
 
 const Respaldo = (props) => {
 
+
  const arrayClasses=[classes.containerRespaldo];
  let modelo=null;
  let tacha=null;
@@ -31,7 +32,9 @@ const Respaldo = (props) => {
       <div className={arrayClasses.join(' ')}>
         {listaCaracteristicas}
         {altura}
-        <div className={classes.respaldo}>
+        <div
+        
+        className={classes.respaldo}>
           <Croquis respaldo={props.respaldo}/>
         </div>
         {ancho}
