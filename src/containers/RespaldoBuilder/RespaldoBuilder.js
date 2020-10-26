@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import classes from "./RespaldoBuilder.module.css";
 import './RespaldoBuilder.css'
 import ContainerRespaldo from "../../components/Respaldo/Respaldo/ContainerRespaldo";
-import Header from './../../components/Respaldo/Header/Header';
-import CurrencyFormat from 'react-currency-format';
+import RoutesHandler from '../../components/Respaldo/RoutesHandler/RoutesHandler';
+import PrecioTotal from './PrecioTotal/PrecioTotal'
 import OpcionesRespaldo from "../../components/Respaldo/OpcionesRespaldo/OpcionesRespaldo";
-import ArrowRight from './../../components/Ul/Arrows/ArrowRight';
-import ArrowLeft from './../../components/Ul/Arrows/ArrowLeft';
+
 
 class RespaldoBuilder extends Component {
   state = {
@@ -202,9 +201,6 @@ class RespaldoBuilder extends Component {
     this.setState({ index: index });
   }
 
-  
-
-
   render() {
     const keys = [
       "/",
@@ -219,8 +215,12 @@ class RespaldoBuilder extends Component {
     const toggleRoutesHandlerLeft = (location) => {
       location = location.replace(baseUrl, "");
       let index = this.state.index;
-      if (keys[index - 1] === undefined) {
+      if (keys[index - 1] === undefined ) {
         return;
+      }
+      console.log(keys[index - 1]);
+      if(keys[index - 1] === "/tachas" && this.props.respaldo.tacha === "Sin tachas"){
+        return this.props.history.push(baseUrl + "/colores");
       }
       this.setState({ index: index - 1 });
       return this.props.history.push(baseUrl + keys[index - 1]);
@@ -229,7 +229,7 @@ class RespaldoBuilder extends Component {
     const toggleRoutesHandlerRight = (location) => {
       location = location.replace(baseUrl, "");
       let index = keys.indexOf(location);
-      if (keys[index + 1] === undefined) {
+      if (keys[index + 1] === undefined || (keys[index + 1] === "/tachas" && this.props.respaldo.tacha === "Sin tachas")) {
         return this.props.history.push("/resumen-respaldo");
       }
       if (index === -1) {
@@ -246,58 +246,28 @@ class RespaldoBuilder extends Component {
         return this.props.history.push(baseUrl + keys[index + 1]);
       }
     }
-
-    //condicional de classes: si la forma no fue elegida, el precio Total esta en el medio...
-    let classesPrecio=[classes.precioTotal];
-    if(this.props.respaldo.forma !== "no seleccionado"){
-      classesPrecio.push(classes.precioConForma)
-    }
+   
     const baseUrl = "/respaldo-options/respaldo-builder";
     const pathname = this.props.history.location.pathname;
   return(
       <div 
       className={classes.RespaldoBuilder}>
-        
-       <Header 
-       screenWidth={this.state.screenWidth} 
+       {/* Seccion de visualizacion */}
+        <div className={this.props.respaldo.forma === 'no seleccionado' ? classes.respaldoPreInicio: classes.croquisRespaldo}>
+
+        <PrecioTotal forma={this.props.respaldo.forma} precioRespaldo={this.props.precioRespaldo}/>
+
+          <ContainerRespaldo respaldo={this.props.respaldo}/>
+
+          <RoutesHandler
        index={this.state.index}
        toggleLeft={toggleRoutesHandlerLeft}
        toggleRight={toggleRoutesHandlerRight}/>
-       
-        <div className={this.props.respaldo.forma === 'no seleccionado' ? null: classes.croquisRespaldo}>
-        
-        <CurrencyFormat 
-                renderText={(value)=>(
-                <div className={classesPrecio.join(' ')}>
-                        Precio Total:
-            <strong>{value}</strong>
-          </div>
-                        )
-                }
-                decimalScale={2}
-                value={this.props.precioRespaldo} 
-                thousandSeparator={true}
-                prefix={"$"}
-                displayType={"text"}
-            />
-          <ContainerRespaldo respaldo={this.props.respaldo}/>
         </div>
 
+      {/* Seccion de opciones */}
         <div className={classes.control }>
-          <div className={classes.ArrowContainer}>
-            {this.state.index === 0 ? 
-          null :
-          <ArrowLeft
-          pathname={pathname} 
-          goToLeft={toggleRoutesHandlerLeft}/>}
-
-          <ArrowRight 
-          pathname={pathname}
-          goToRight={toggleRoutesHandlerRight}
-          />
-          </div>
           
-          {/* //libreria para animar las transiciones entre rutas... */}
          <OpcionesRespaldo 
           pathname={pathname}
           baseUrl={baseUrl}

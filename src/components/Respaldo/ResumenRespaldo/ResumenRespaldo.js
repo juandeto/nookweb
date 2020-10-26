@@ -8,6 +8,7 @@ import Modal from "./../../Ul/Modal/Modal";
 import Message from "./../../Message/message";
 import CurrencyFormat from 'react-currency-format';
 import ArrowLeft from './../../Ul/Arrows/ArrowLeft';
+import Croquis from './../Respaldo/Croquis/Croquis';
 
 class ResumenRespaldo extends Component {
   state = {
@@ -51,14 +52,18 @@ class ResumenRespaldo extends Component {
   
           <ArrowLeft
           goToLeft={goToLeft}
-          pathname={"/respaldo-options/respaldo-builder/tachas"} />
+          pathname={this.props.respaldo.respaldo.tacha === "Sin tachas"?"/respaldo-options/respaldo-builder/colores":"/respaldo-options/respaldo-builder/tachas"} />
 
         <ul className={classes.listaPrincipal}>
           <li>
             <h4 className={classes.title}>Caracteristicas:</h4>
+            <div className={classes.croquisContainer}>
+              <Croquis respaldo={this.props.caracteristicas}/>
+            </div>
             <ul className={classes.Caracteristicas}>
               <li style={{color: this.props.caracteristicas.forma === 'no seleccionado' ? 'red' : 'none'}}>
                 Forma: {this.props.caracteristicas.forma}</li>
+                <li style={{color: this.props.caracteristicas.modelo=== 'no seleccionado' ? 'red' : 'none'}}>Modelo: {this.props.caracteristicas.modelo}</li>
               <li style={{color: this.props.caracteristicas.medida.altura === null ? 'red' : 'none'}}>
                 Medidas:
                 <ul className={classes.Medidas} >
@@ -84,7 +89,6 @@ class ResumenRespaldo extends Component {
                 Tachas: {this.props.caracteristicas.tacha}{this.props.caracteristicas.tipoTacha === '' ? '': ' de '}
                 {this.props.caracteristicas.tipoTacha}
               </li>
-              <li style={{color: this.props.caracteristicas.modelo=== 'no seleccionado' ? 'red' : 'none'}}>Modelo: {this.props.caracteristicas.modelo}</li>
               <li>Cantidad: <input onChange={(event)=>this.props.onAmountChange(event.target.value)} type="number" min="1" defaultValue="1" className={classes.inputCantidad}/></li>
             </ul>
           </li>
@@ -102,6 +106,7 @@ class ResumenRespaldo extends Component {
                 prefix={"$"}
                 fixedDecimalScale={true}
             />
+            
         </ul>
         {checkFeatures ? (
           <span>

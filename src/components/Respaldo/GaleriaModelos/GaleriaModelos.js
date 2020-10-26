@@ -11,7 +11,7 @@ const GaleriaModelos = () => {
     return (
         <div className={classes.GaleriaModelos}>
             <h1 className={classes.title}>Nuestros Modelos</h1>
-            <p>Esta sección se encuentra en construcción, para ver fotos de nuestros modelos visita nuestras redes.</p>
+            <p>Para ver fotos de los modelos visita nuestras redes sociales.</p>
             <span className={classes.shakeVertical}>{pointer}</span>
             <MediaLinks />
         </div>

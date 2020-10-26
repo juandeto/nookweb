@@ -1,5 +1,5 @@
 .Mapa{
-    width: 80%;
+    width: 70%;
     margin: 10px auto;
     display: flex;
     align-items: center;
@@ -10,11 +10,11 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    border: 1px solid rgba(64, 65, 69, 0.1);
+    border: 1px solid rgba(64, 65, 69, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(64, 65, 69, 0.5);
+    color: rgba(64, 65, 69, 0.8);
     z-index: 2;
     position: relative;
     background: white;
@@ -25,12 +25,26 @@
 .line{
     position: absolute;
     z-index: 0;
-    border: 1px solid rgba(64, 65, 69, 0.1);
-    width: 68%;
+    border: 1px solid rgba(64, 65, 69, 0.3);
+    width: 60%;
 }
 
 .fill{
     border: 1px solid rgba(64, 65, 69, 0.5);
     color:rgba(64, 65, 69, 0.7);
     transform: scale(1.2);
+}
+
+@media (min-width: 500px){
+    .Mapa{
+        width: 80%;
+
+    }
+
+    .line{
+        position: absolute;
+        z-index: 0;
+        border: 1px solid rgba(64, 65, 69, 0.3);
+        width: 68%;
+    }
 }

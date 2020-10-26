@@ -20,7 +20,8 @@ export {
     onCreateOrder,
     onSelectFormaDePago,
     onSelectFormaDeEnvio,
-    onProvinciaSelected
+    onProvinciaSelected,
+    unmountCarrito
 } from './carrito';
 
 export {

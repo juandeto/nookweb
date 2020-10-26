@@ -8,15 +8,14 @@ import MediaLinks from './../MediaLinks/MediaLinks';
 import MenuBtn from './../../Navigation/MenuBtn/MenuBtn';
 
 function Header(props) {
-    let location = props.history.location.pathname;
 
     return (
         <div className={classes.Header}>
             <MenuBtn openSideDrawer={props.openSideDrawer}/>
             <span className={classes.LinksContainer}><MediaLinks /></span>
             {props.token ? <Link to="/admin-user"><h3>MODO-ADMIN</h3></Link>: null}
-            {location ==='/' ? '': 
-            <Link to="/" ><h3>Nook</h3></Link>}
+            
+            <Link to="/" ><h3>Nook</h3></Link>
             <CarritoLink />
         </div>
     )

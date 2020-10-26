@@ -83,50 +83,51 @@ class AdminLayout extends Component {
 
   render() {
 
-    
-    
     let orders = this.state.orders.map((order, i) => {
+      let item=null
         if(!order.pagado && !order.entregado){
-          return (
-          <ItemOrder 
+          
+         item=<ItemOrder 
           key={i}
           order={order} 
           orderPagoHandler={this.orderPagoHandler}
           formaDeEnvioHandler={this.formaDeEnvioHandler}
           deleteOrderHandler={this.deleteOrderHandler}
           saveChanges={this.saveChanges} />
-          )
+          
         }
-      
+        return item;
     });
     let payOrders = this.state.orders.map((order, i) => {
+      let item=null
       if(order.pagado && !order.entregado){
-        return (
-        <ItemOrder 
+       
+        item=<ItemOrder 
         key={i}
         order={order} 
         orderPagoHandler={this.orderPagoHandler}
         formaDeEnvioHandler={this.formaDeEnvioHandler}
         deleteOrderHandler={this.deleteOrderHandler}
         saveChanges={this.saveChanges} />
-        )
+        
       }
-    
+      return item
+
   });
 
   let completeOrders = this.state.orders.map((order, i) => {
+    let item=null
     if(order.pagado && order.entregado){
-      return (
-      <ItemOrder 
+      item= <ItemOrder 
       key={i}
       order={order} 
       orderPagoHandler={this.orderPagoHandler}
       formaDeEnvioHandler={this.formaDeEnvioHandler}
       deleteOrderHandler={this.deleteOrderHandler}
       saveChanges={this.saveChanges} />
-      )
+      
     }
-  
+  return item
 });
 
     if (this.state.loading) {

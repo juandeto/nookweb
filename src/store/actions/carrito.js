@@ -62,3 +62,9 @@ export const onProvinciaSelected = (provincia) =>{
     provincia: provincia
   }
 }
+
+export const unmountCarrito = () =>{
+  return{
+    type: actionTypes.UNMOUNT_CARRITO
+  }
+}
