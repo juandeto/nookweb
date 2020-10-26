@@ -6,7 +6,6 @@ import Logo from './../../Ul/Logo/Logo';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classes from './MensajeTrasPago.module.css';
-import MercadoPagoForm from './MercadoPago/MercadoPagoForm';
 
 
 class SeccionDePago extends Component {
@@ -20,7 +19,7 @@ class SeccionDePago extends Component {
               <span className={classes.logo}>
                 <Logo />
               </span>
-    {this.props.formaDePago === 'Transferencia Bancaria' ? mensajeTransferencia : <MercadoPagoForm />}
+    {this.props.formaDePago === 'Transferencia Bancaria' ? mensajeTransferencia : null}
                 
                 <section className={classes.section}>
                 <p className={classes.paragraph}>Te hemos enviado a tu email ({this.props.datosUsuario ? this.props.datosUsuario.orderData.email : null}) los datos de tu compra (caracteristicas, plazos, entrega, etc.).</p>
