@@ -13,7 +13,7 @@
     padding: 50px 0;
     height: fit-content;
      background-image: 
-        url("C:/Users/Juan/Desktop/paginanook/nookweb/src/containers/Home/backHome.jpg");
+        url("./backHome.jpg");
    background-position: center;
    background-repeat: no-repeat;
    background-size: cover;
