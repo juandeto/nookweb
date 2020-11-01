@@ -9,12 +9,13 @@ const Tachas = (props) => {
   const modeloConTacha =/Tacha/g;
   let opciones=null;
 
-
   if(modeloConTacha.test(props.modelo)){
     
     opciones = props.tachas.filter(tipo => (tipo.tamanio !== "Sin tachas"))
     .map((tacha, i) => (
-    <Tacha key={i} tacha={tacha} selectedTacha={props.selectedTacha} selectTacha={props.selectTacha}>
+    <Tacha 
+    displayOptions={props.displayOptions}
+    key={i} tacha={tacha} selectedTacha={props.selectedTacha} selectTacha={props.selectTacha}>
       <Collapse
         isOpened={props.displayOptions && props.selectedTacha === tacha.tamanio}
       >
@@ -26,6 +27,7 @@ const Tachas = (props) => {
               selectTipoDeTacha={props.selectTipoDeTacha}
               selectedTacha={props.selectedTacha}
               tipoDeTacha={props.tipoDeTacha}
+              
             />
           ))}
         </ul>
@@ -35,7 +37,9 @@ const Tachas = (props) => {
   }else{
     opciones=props.tachas.filter(tipo => (tipo.tamanio === "Sin tachas"))
     .map((tacha, i) =>(
-      <Tacha key={i} selectedTacha={props.selectedTacha} tacha={tacha} selectTacha={props.selectTacha}>
+      <Tacha 
+      displayOptions={props.displayOptions}
+      key={i} selectedTacha={props.selectedTacha} tacha={tacha} selectTacha={props.selectTacha}>
       <Collapse
         isOpened={props.displayOptions && props.selectedTacha === tacha.tamanio}
       >
@@ -45,6 +49,7 @@ const Tachas = (props) => {
               key={i}
               modelo={ejemplar}
               selectTipoDeTacha={props.selectTipoDeTacha}
+              displayOptions={props.displayOptions}
             />
           ))}
         </ul>
