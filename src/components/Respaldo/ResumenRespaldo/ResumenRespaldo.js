@@ -13,6 +13,7 @@ import Croquis from './../Respaldo/Croquis/Croquis';
 class ResumenRespaldo extends Component {
   state = {
     show: false,
+    cantidad: 1,
   };
   
 
@@ -39,6 +40,21 @@ class ResumenRespaldo extends Component {
       this.props.onProductAddedToBasket(this.props.caracteristicas);
       this.props.onRefreshRespaldoProperties()
     };
+
+    const handleMinusAmount = () =>{
+
+      if(this.state.cantidad > 1){
+        this.setState({cantidad: this.state.cantidad - 1})
+        this.props.onAmountChange(this.state.cantidad)
+      }
+      
+    }
+
+    const handlePlusAmount = () =>{
+
+        this.setState({cantidad: this.state.cantidad + 1})
+        this.props.onAmountChange(this.state.cantidad)
+    }
     
     return ( 
       
@@ -89,7 +105,21 @@ class ResumenRespaldo extends Component {
                 Tachas: {this.props.caracteristicas.tacha}{this.props.caracteristicas.tipoTacha === '' ? '': ' de '}
                 {this.props.caracteristicas.tipoTacha}
               </li>
-              <li>Cantidad: <input onChange={(event)=>this.props.onAmountChange(event.target.value)} type="number" min="1" defaultValue="1" className={classes.inputCantidad}/></li>
+
+
+              <li>Cantidad: 
+                <span 
+                onClick={handleMinusAmount}
+                className={classes.mathSimbolMinus}>-</span>
+                <input 
+                disabled={true}
+                value={this.state.cantidad}
+                className={classes.inputCantidad}/>
+                <span 
+                onClick={handlePlusAmount}
+                className={classes.mathSimbolPlus}>+</span>
+                </li>
+
             </ul>
           </li>
           
