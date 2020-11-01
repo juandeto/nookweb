@@ -41,21 +41,21 @@ class ResumenRespaldo extends Component {
       this.props.onRefreshRespaldoProperties()
     };
 
-    const handleMinusAmount = () =>{
+    const handleMinusAmount = (cantidad) =>{
 
       if(this.state.cantidad > 1){
-        this.setState({cantidad: this.state.cantidad - 1})
-        this.props.onAmountChange(this.state.cantidad)
+        let newCantidad = cantidad - 1;
+        this.setState({cantidad: newCantidad});
+        this.props.onAmountChange(newCantidad)
       }
-      
-    }
-
-    const handlePlusAmount = () =>{
-
-        this.setState({cantidad: this.state.cantidad + 1})
-        this.props.onAmountChange(this.state.cantidad)
     }
     
+    const handlePlusAmount = (cantidad) =>{
+        let newCantidad = cantidad + 1;
+        this.setState({cantidad: newCantidad});
+        this.props.onAmountChange(newCantidad)
+    }
+
     return ( 
       
     <React.Fragment >
@@ -109,14 +109,15 @@ class ResumenRespaldo extends Component {
 
               <li>Cantidad: 
                 <span 
-                onClick={handleMinusAmount}
+                onClick={() => handleMinusAmount(this.state.cantidad)}
                 className={classes.mathSimbolMinus}>-</span>
                 <input 
                 disabled={true}
                 value={this.state.cantidad}
-                className={classes.inputCantidad}/>
+                className={classes.inputCantidad}
+                />
                 <span 
-                onClick={handlePlusAmount}
+                onClick={() => handlePlusAmount(this.state.cantidad)}
                 className={classes.mathSimbolPlus}>+</span>
                 </li>
 
@@ -130,7 +131,7 @@ class ResumenRespaldo extends Component {
                         )
                 }}
                 decimalScale={2}
-                value={this.props.caracteristicas.precioParticular * this.props.caracteristicas.cantidad}
+                value={this.props.caracteristicas.precioParticular * this.state.cantidad}
                 displayType={"text"}
                 thousandSeparator={true}
                 prefix={"$"}
