@@ -38,12 +38,11 @@ class AdminLayout extends Component {
       })
       .catch((err) => {
         this.setState({ loading: false });
-        console.log(err);
       });
   }
 
   checkout=() =>{
-    return <Redirect to="/logout"/>
+    return this.props.history.push("logout")
   }
 
   orderPagoHandler = (id) => {
@@ -80,9 +79,9 @@ class AdminLayout extends Component {
     .then(response => '')
     .catch(error => console.log(error))
   }
+  
 
   render() {
-
     let orders = this.state.orders.map((order, i) => {
       let item=null
         if(!order.pagado && !order.entregado){
