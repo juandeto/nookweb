@@ -14,7 +14,7 @@ import * as actions from "./../../../store/actions/index";
 import Modal from './../../../components/Ul/Modal/Modal';
 import CurrencyFormat from 'react-currency-format';
 
-import moment from "moment";
+import { format } from "date-fns";
 
 class ContactData extends Component {
   _isMounted=false;
@@ -140,7 +140,8 @@ class ContactData extends Component {
       ].value;
     }
 
-    let time = moment().format("MMMM Do YYYY, h:mm:ss a");
+    let date = new Date();
+   let time = format(date, "dd/MM/yyyy HH:mm:ss");
     const order = {
       basket: this.props.basket,
       price: this.props.price,
