@@ -64,12 +64,12 @@ class AdminLayout extends Component {
   deleteOrderHandler = (order) =>{
     let arrayOrders = [...this.state.orders];
     arrayOrders=arrayOrders.filter(orden => orden.id !== order.id);
-    console.log(arrayOrders);
+
     this.setState({orders: arrayOrders})
 
     let url=`https://nookweb-5fb61.firebaseio.com/orders/${order.id}.json`;
     axios.delete(url, order)
-    .then(response => console.log(response))
+    .then(response => response)
     .catch(error => console.log(error))
   }
 
@@ -77,7 +77,7 @@ class AdminLayout extends Component {
     let url=`https://nookweb-5fb61.firebaseio.com/orders/${order.id}.json`;
     axios.put(url, order)
     .then(response => '')
-    .catch(error => console.log(error))
+    .catch(error => error)
   }
   
 
