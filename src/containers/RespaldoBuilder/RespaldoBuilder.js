@@ -219,7 +219,7 @@ class RespaldoBuilder extends Component {
         return;
       }
       if(keys[index - 1] === "/tachas" && this.props.respaldo.tacha === "Sin tachas"){
-        return this.props.history.push(baseUrl + "/colores");
+        return this.props.history.push(baseUrl + keys[index - 2]);
       }
       this.setState({ index: index - 1 });
       return this.props.history.push(baseUrl + keys[index - 1]);

@@ -5,31 +5,30 @@ import * as actions from './../../../store/actions/index';
 import Logo from './../../Ul/Logo/Logo';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import classes from './MensajeTrasPago.module.css';
+import classes from './MensajePagoFacil.module.css';
 
 
-class SeccionDePago extends Component {
+class MensajePagoFacil extends Component {
   componentWillUnmount(){
     this.props.onUnmountCarrito()
   }
   render() { 
     const mensajeTransferencia =<p className={classes.paragraph}><strong>También te enviamos los datos para realizar la transferencia</strong></p>;
     return ( 
-       <div className={classes.MensajeTrasPago}>
+       <div className={classes.MensajePagoFacil}>
               <span className={classes.logo}>
                 <Logo />
               </span>
                 <section className={classes.section}>
-                <p className={classes.paragraph}>Te hemos enviado a tu email ({this.props.datosUsuario ? this.props.datosUsuario.orderData.email : null}) los datos de tu compra (caracteristicas, plazos, entrega, etc.).</p>
-                {this.props.formaDePago === 'Transferencia Bancaria' ? mensajeTransferencia : null}
-                <p className={classes.paragraph}>Pronto nos estaremos comunicando con vos al {this.props.datosUsuario ? this.props.datosUsuario.orderData.telefono : null}. Si tenes alguna duda <Link to="/contacto">no dudes en contactarnos</Link></p>
-                <p className={classes.paragraph}></p>
+                <p className={classes.paragraph}>Muchas gracias por tu compra.</p>
+                <p className={classes.paragraph}>Recordá que el pedido sera confirmado una vez que te acerques a Rapipago / Pago Facil y abones el saldo</p>
+                <p className={classes.paragraph}>Si tenes alguna duda <Link to="/contacto">no dudes en contactarnos</Link></p>
                 </section>
             </div>
      );
   }
 }
- 
+
 
 const mapStateToProps = (state) => {
     return {
@@ -43,4 +42,6 @@ const mapDispatchToProps = (dispatch) => {
     };
   };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SeccionDePago);
+export default connect(mapStateToProps, mapDispatchToProps)(MensajePagoFacil);
+
+

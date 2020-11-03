@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import MediaLinks from './../Ul/MediaLinks/MediaLinks';
-import classes from './Contacto.module.css'
+import classes from './Contacto.module.css';
 
 class Contacto extends Component{
     state={
@@ -26,10 +26,12 @@ class Contacto extends Component{
                     </div>
                     <div className={classes.info}>
                     <span>
-                        Tel:
+                        WhatsApp:
                     </span>
                     <span>
-                        +54 911 5560 7284
+                        <a
+                        target="_blank"
+                        href="https://api.whatsapp.com/send?phone=+5491155623604o&text=%20">+54 911 5562 3604</a>
                     </span>
                     </div>
 
