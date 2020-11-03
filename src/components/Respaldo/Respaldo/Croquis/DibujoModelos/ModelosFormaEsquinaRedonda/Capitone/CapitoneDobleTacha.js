@@ -559,7 +559,7 @@ const CapitoneDobleTacha = () => (
 </g>
 <g filter="url(#filter71_f)">
 <path d="M10.5355 33.7678V37.3033" stroke="#404145"/>
-<rect x="0.1" y="43.1" width="109.8" height="21" fill="white" stroke="#404145" strokeWidth="0.2"/>
+<path d="M0.5 41.5H104.5H109.5" stroke="#404145" strokeWidth="0.1"/>
 
 </g>
 </g>
@@ -576,6 +576,7 @@ const CapitoneDobleTacha = () => (
 <path d="M10.5355 21.7678V25.3033" stroke="#404145"/>
 </g>
 </g>
+<rect x="0.1" y="41.1" width="109.8" height="20.6" fill="white" stroke="#404145" strokeWidth="0.2"/>
 <defs>
 <filter id="filter0_f" x="8.11777" y="9.11777" width="4.83553" height="4.83553" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
 <feFlood floodOpacity="0" result="BackgroundImageFix"/>

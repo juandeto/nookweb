@@ -13,6 +13,7 @@ import Croquis from './../Respaldo/Croquis/Croquis';
 class ResumenRespaldo extends Component {
   state = {
     show: false,
+    cantidad: 1,
   };
   
 
@@ -37,9 +38,23 @@ class ResumenRespaldo extends Component {
    const addToBasket = () => {
       this.setState({ show: true });
       this.props.onProductAddedToBasket(this.props.caracteristicas);
-      this.props.onRefreshRespaldoProperties()
     };
+
+    const handleMinusAmount = (cantidad) =>{
+
+      if(this.state.cantidad > 1){
+        let newCantidad = cantidad - 1;
+        this.setState({cantidad: newCantidad});
+        this.props.onAmountChange(newCantidad)
+      }
+    }
     
+    const handlePlusAmount = (cantidad) =>{
+        let newCantidad = cantidad + 1;
+        this.setState({cantidad: newCantidad});
+        this.props.onAmountChange(newCantidad)
+    }
+
     return ( 
       
     <React.Fragment >
@@ -89,7 +104,22 @@ class ResumenRespaldo extends Component {
                 Tachas: {this.props.caracteristicas.tacha}{this.props.caracteristicas.tipoTacha === '' ? '': ' de '}
                 {this.props.caracteristicas.tipoTacha}
               </li>
-              <li>Cantidad: <input onChange={(event)=>this.props.onAmountChange(event.target.value)} type="number" min="1" defaultValue="1" className={classes.inputCantidad}/></li>
+
+
+              <li><p>Cantidad:</p> 
+                <span 
+                onClick={() => handleMinusAmount(this.state.cantidad)}
+                className={classes.mathSimbolMinus}>-</span>
+                <input 
+                disabled={true}
+                value={this.state.cantidad}
+                className={classes.inputCantidad}
+                />
+                <span 
+                onClick={() => handlePlusAmount(this.state.cantidad)}
+                className={classes.mathSimbolPlus}>+</span>
+                </li>
+
             </ul>
           </li>
           
@@ -100,7 +130,7 @@ class ResumenRespaldo extends Component {
                         )
                 }}
                 decimalScale={2}
-                value={this.props.caracteristicas.precioParticular * this.props.caracteristicas.cantidad}
+                value={this.props.caracteristicas.precioParticular * this.state.cantidad}
                 displayType={"text"}
                 thousandSeparator={true}
                 prefix={"$"}
@@ -139,7 +169,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onRefreshRespaldoProperties: ()=>dispatch(actions.onRefreshRespaldoProperties()),
     onProductAddedToBasket: (producto) =>
       dispatch(actions.onProductAddedToBasket(producto)),
     onAmountChange: (cantidad)=>dispatch(actions.onAmountChange(cantidad))

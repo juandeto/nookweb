@@ -20,7 +20,7 @@
 
 .Modelos > .modeloOptions > .item{
     display: flex;
-    padding: 15px;
+    padding: 25px 15px;
     justify-content: space-between;
     letter-spacing: 0.11rem;
     text-transform: uppercase;
@@ -34,6 +34,9 @@
     width: 140px;
     text-align: left;
     margin: 0 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .verEjemplo{
@@ -55,7 +58,11 @@
 }
 
 .fill{
-    background-color:beige;
+    background-color: beige;
+    box-shadow: inset 2px 2px 0px 0px rgba(64,65,69,0.75), inset -2px -2px 0px 0px rgba(64,65,69,0.42);;
+    -webkit-box-shadow: inset 2px 2px 0px 0px rgba(64,65,69,0.75), inset -2px -2px 0px 0px rgba(64,65,69,,0.42);
+-moz-box-shadow: inset 2px 2px 0px 0px rgba(64,65,69,0.75), inset -2px -2px 0px 0px rgba(64,65,69,0.42);
+font-weight: bold;
 }
 
 .item:hover{

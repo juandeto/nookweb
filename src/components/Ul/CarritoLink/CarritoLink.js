@@ -61,7 +61,8 @@ function Carrito(props) {
                  <CurrencyFormat 
                  renderText={(value)=>{
                      return(
-                <p className={classes.totalPrice}>Total ({props.basket.length} producto): {value}</p>
+                <p className={classes.totalPrice}>
+                    Total ({props.basket.length} {props.basket.length > 1 ? "productos":"proucto"}): {value}</p>
                          )
                  }}
                  decimalScale={2}

@@ -32,6 +32,7 @@
     max-width: 70%;
     line-height: 1.2em;
     color: #515258;
+    text-align: center;
 }
 
 .container{
@@ -63,44 +64,7 @@
     padding: 5px;
 }
 
-.productCard{
-    letter-spacing: 0.11rem;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    width: calc(100% - 22px);
-    margin: 0 auto;
-    min-height: 100px;
-    border: 1px solid rgba(64, 65, 69, 0.1);
-    border-left: 0;
-    border-right: 0;
-    padding: 10px;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    transition: 0.3s all ease;
-}
 
-.productCard > h3{
-   color: rgb(64, 65, 69);
-}
-
-.productCard > p{
-    color: rgb(92, 92, 92);
-}
-
-.remover{
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    letter-spacing: 0.09rem;
-    cursor: pointer;
-    color: tomato;
-    align-self: flex-end;
-}
-
-.remover:hover{
-    text-decoration: underline;
-}
 
 .disabled{
     background-color: #ccc;

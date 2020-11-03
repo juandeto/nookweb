@@ -5,6 +5,7 @@ import classes from "./Carrito.module.css";
 import { connect } from "react-redux";
 import ContactData from "./ContactData/ContactData";
 import CurrencyFormat from 'react-currency-format';
+import ProductCard from './../../components/ProductCard/ProductCard';
 
 class Carrito extends Component {
   
@@ -13,51 +14,19 @@ class Carrito extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState){
-    if(this.props.basket !== nextProps.basket || this.props.price !==nextProps.price){
+    if(this.props.basket !== nextProps.basket 
+      || this.props.price !==nextProps.price){
+      console.log('update')
       return true
     }else{
       return false
     }
   }
-
+  
   render() {
-    const productCards = this.props.basket.map((product, i) => {
-      return (
-        <div key={i} className={classes.productCard}>
-          <h3>respaldo: {product.modelo} / {product.genero}</h3>
-          <CurrencyFormat 
-                renderText={(value)=>{
-                    return(
-               <p>
-            precio individual: <strong>{value}</strong>
-          </p>
-                        )
-                }}
-                decimalScale={2}
-                value={product.precioParticular} //Homework
-                displayType={"text"}
-                thousandSeparator={true}
-                prefix={"$"}
-                fixedDecimalScale={true}
-            />
-          
-          <p>
-            cantidad: <strong>{product.cantidad}</strong>
-          </p>
-          <span
-            onClick={() =>
-              this.props.onRemoveFromBasket(
-                product.modelo,
-                product.precioParticular
-              )
-            }
-            className={classes.remover}
-          >
-            Remover
-          </span>
-        </div>
-      );
-    });
+    console.log(this.props.basket)
+    const productCards = this.props.basket.map((product, i) => <ProductCard RemoveFromBasket={this.props.onRemoveFromBasket} key={i} product={product}/>);
+
 
       return (
       <div className={classes.Carrito}>

@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import withErrorHandler from './../../hoc/withErrorHandler/withErrorHandler';
 import classes from "./AdminLayout.module.css";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./../../components/Ul/Spinner/Spinner";
 import ItemOrder from './../../components/Admin/ItemOrder/ItemOrder';
@@ -38,12 +37,11 @@ class AdminLayout extends Component {
       })
       .catch((err) => {
         this.setState({ loading: false });
-        console.log(err);
       });
   }
 
   checkout=() =>{
-    return <Redirect to="/logout"/>
+    return this.props.history.push("logout")
   }
 
   orderPagoHandler = (id) => {
@@ -65,12 +63,12 @@ class AdminLayout extends Component {
   deleteOrderHandler = (order) =>{
     let arrayOrders = [...this.state.orders];
     arrayOrders=arrayOrders.filter(orden => orden.id !== order.id);
-    console.log(arrayOrders);
+
     this.setState({orders: arrayOrders})
 
     let url=`https://nookweb-5fb61.firebaseio.com/orders/${order.id}.json`;
     axios.delete(url, order)
-    .then(response => console.log(response))
+    .then(response => response)
     .catch(error => console.log(error))
   }
 
@@ -78,11 +76,11 @@ class AdminLayout extends Component {
     let url=`https://nookweb-5fb61.firebaseio.com/orders/${order.id}.json`;
     axios.put(url, order)
     .then(response => '')
-    .catch(error => console.log(error))
+    .catch(error => error)
   }
+  
 
   render() {
-
     let orders = this.state.orders.map((order, i) => {
       let item=null
         if(!order.pagado && !order.entregado){
@@ -143,7 +141,9 @@ class AdminLayout extends Component {
         ) : null}
         </div>
         <div className={classes.orderContainer}>{orders}</div>
-        <h3>Ordenes Pagadas</h3>
+        <h3>Ordenes Pagadas (y no pagadas)</h3>
+        <div className={classes.pagadosContainer}>{payOrders}</div> 
+        <h3>Ordenes Entregadas (y no pagadas)</h3>
         <div className={classes.pagadosContainer}>{payOrders}</div> 
         <h3>Ordenes Pagadas y Entregadas</h3>
          <div className={classes.completeOrdersContainer}>{completeOrders}</div> 

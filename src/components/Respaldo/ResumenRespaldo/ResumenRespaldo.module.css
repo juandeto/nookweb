@@ -82,6 +82,7 @@
     padding: 5px 0;
     margin: 10px 0 ;
     text-align: left;
+    font-size: 1rem;
 }
 
 .Medidas{
@@ -104,6 +105,7 @@
     margin-bottom: 18px!important;
     margin-left: 5px;
     border-top: 1px solid rgba(64, 65, 69, 0.2);
+    font-size: 1.3rem;
 }
 
 .Button{
@@ -137,32 +139,52 @@
     width: 60px;
     text-align: center;
     outline: none;
-    border: 1px solid #ccc;
+    border: none;
     padding: 10px 0px;
     border-radius: 3px;
     font-family: inherit;
     font:inherit;
-    font-size: 0.8rem;
+    font-size: 1rem;
+    font-weight: bold;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    background-color: #C2A37E;
-    color:#C2A37E;
-    height: 30px;
-    margin: 0;
-    z-index: 2;
-    padding: 5px;
+.mathSimbolMinus{
+    padding: 8px 16px;
 }
 
-input[type=number] { -moz-appearance:textfield; }
+.mathSimbolPlus{
+    padding: 8px 14px;
+}
 
+.mathSimbolMinus,
+.mathSimbolPlus{
+    margin: 5px 15px ;
+    border: 1px solid #404145;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease-out;
+}
+
+.mathSimbolMinus:hover,
+.mathSimbolPlus:hover{
+    background-color: #404145;
+    color: white;
+}
 
 .croquisContainer{
 max-width: 300px;
 overflow: hidden;
 }
 
+@media (min-width: 500px){
+    .mathSimbolMinus,
+.mathSimbolPlus{
+    margin: 5px 25px ;
+}
+}
 
 @media (min-width: 800px){
     .listaPrincipal{
@@ -172,4 +194,5 @@ overflow: hidden;
     .Button{
         max-width: 30%;
     }
+
 }

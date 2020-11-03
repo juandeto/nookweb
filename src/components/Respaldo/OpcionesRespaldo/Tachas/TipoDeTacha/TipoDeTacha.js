@@ -1,7 +1,7 @@
 import React from 'react';
-import Cromada from './Cromada.jpeg';
-import Óxido from './Óxido.jpeg';
-import Peltre from './Peltre.jpeg';
+import Cromada from './Cromada.png';
+import Óxido from './Óxido.png';
+import Peltre from './Peltre.png';
 
 import './../Tachas.css';
 

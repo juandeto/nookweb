@@ -46,12 +46,12 @@
     opacity: 0.8;
 }
 
-.Medidas > .container > .item{
+.item{
     border-bottom: 1px solid rgba(64, 65, 69, 0.1);;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    padding: 25px 0px;
+    padding: 30px 0px;
     letter-spacing: 0.11rem;
     text-transform: uppercase;
     font-size: 0.9rem;
@@ -65,4 +65,14 @@
 
 .fill{
     background-color: beige;
+    box-shadow: inset 2px 2px 0px 0px rgba(64,65,69,0.75), inset -2px -2px 0px 0px rgba(64,65,69,0.42);;
+    -webkit-box-shadow: inset 2px 2px 0px 0px rgba(64,65,69,0.75), inset -2px -2px 0px 0px rgba(64,65,69,,0.42);
+-moz-box-shadow: inset 2px 2px 0px 0px rgba(64,65,69,0.75), inset -2px -2px 0px 0px rgba(64,65,69,0.42);
+font-weight: bold;
+}
+
+@media (min-width: 500px){
+    .item{
+        padding: 30px 0px;
+    }
 }

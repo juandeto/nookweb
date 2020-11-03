@@ -4,7 +4,7 @@ import './../Tachas.css';
 
 const Tacha = (props) => {
     const arrayClasses=["itemHeader", "fill"];
-
+ 
     let plusSimbol = (
         <span className="icon">
           <p className="simbol">+</p>
