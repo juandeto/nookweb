@@ -31,6 +31,11 @@ class Home extends Component {
                     <h3>Personaliza tu respaldo</h3>
                 </div>
             </Link>
+            <div className={classes.dataDePago}>
+            <p>- Pagando en con transferencia bancaria tenés 20% de descuento en el precio final</p>
+            <p>- Ofrecemos cuotas y variedad de tarjetas</p>                
+            </div>
+
             </div>
          );
     }

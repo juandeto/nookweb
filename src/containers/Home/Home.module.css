@@ -67,6 +67,22 @@
     background-color: rgba(255,255,255,0.2);
 } */
 
+.dataDePago{
+    font-size: 0.7rem;
+    color: #404145;
+    border: solid 0.5px #ccc;
+    margin-top: 30px;
+    padding: 5px;
+
+    box-shadow:  5px 5px 11px #d4d4d4, 
+    -5px -5px 11px #ffffff;
+}
+
+.dataDePago >p{
+    text-align: left;
+    letter-spacing: 0.09rem;
+}
+
 @media (min-width: 500px){
     .Home{
         justify-content: flex-start;
@@ -74,5 +90,9 @@
     }
     .DesktopOnly{
         width: 100%;
+    }
+    .dataDePago{
+        font-size: 0.9rem;
+
     }
 }
