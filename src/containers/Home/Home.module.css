@@ -65,12 +65,12 @@
 
 
 .dataDePago{
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+    font-weight: 700;
     color: #404145;
     border: solid 0.5px #ccc;
     margin-top: 30px;
     padding: 5px;
-
     box-shadow:  5px 5px 11px #d4d4d4, 
     -5px -5px 11px #ffffff;
 }
