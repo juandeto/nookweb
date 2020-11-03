@@ -158,7 +158,7 @@
 
 .mathSimbolMinus,
 .mathSimbolPlus{
-    margin: 5px 25px ;
+    margin: 5px 15px ;
     border: 1px solid #404145;
     border-radius: 50%;
     font-size: 1.3rem;
@@ -179,6 +179,12 @@ max-width: 300px;
 overflow: hidden;
 }
 
+@media (min-width: 500px){
+    .mathSimbolMinus,
+.mathSimbolPlus{
+    margin: 5px 25px ;
+}
+}
 
 @media (min-width: 800px){
     .listaPrincipal{
@@ -188,4 +194,5 @@ overflow: hidden;
     .Button{
         max-width: 30%;
     }
+
 }

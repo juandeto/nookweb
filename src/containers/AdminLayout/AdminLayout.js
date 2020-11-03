@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import withErrorHandler from './../../hoc/withErrorHandler/withErrorHandler';
 import classes from "./AdminLayout.module.css";
 import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
 import axios from "axios";
 import Spinner from "./../../components/Ul/Spinner/Spinner";
 import ItemOrder from './../../components/Admin/ItemOrder/ItemOrder';

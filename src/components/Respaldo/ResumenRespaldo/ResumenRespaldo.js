@@ -38,7 +38,6 @@ class ResumenRespaldo extends Component {
    const addToBasket = () => {
       this.setState({ show: true });
       this.props.onProductAddedToBasket(this.props.caracteristicas);
-      this.props.onRefreshRespaldoProperties()
     };
 
     const handleMinusAmount = (cantidad) =>{
@@ -107,7 +106,7 @@ class ResumenRespaldo extends Component {
               </li>
 
 
-              <li>Cantidad: 
+              <li><p>Cantidad:</p> 
                 <span 
                 onClick={() => handleMinusAmount(this.state.cantidad)}
                 className={classes.mathSimbolMinus}>-</span>
@@ -170,7 +169,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onRefreshRespaldoProperties: ()=>dispatch(actions.onRefreshRespaldoProperties()),
     onProductAddedToBasket: (producto) =>
       dispatch(actions.onProductAddedToBasket(producto)),
     onAmountChange: (cantidad)=>dispatch(actions.onAmountChange(cantidad))
