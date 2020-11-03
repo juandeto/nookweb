@@ -82,9 +82,8 @@ class AdminLayout extends Component {
 
   render() {
     let orders = this.state.orders.map((order, i) => {
-      let item=null
+      let item=null;
         if(!order.pagado && !order.entregado){
-          
          item=<ItemOrder 
           key={i}
           order={order} 
@@ -113,6 +112,23 @@ class AdminLayout extends Component {
 
   });
 
+  let deliverOrders = this.state.orders.map((order, i) => {
+    let item=null
+    if(!order.pagado && order.entregado){
+     
+      item=<ItemOrder 
+      key={i}
+      order={order} 
+      orderPagoHandler={this.orderPagoHandler}
+      formaDeEnvioHandler={this.formaDeEnvioHandler}
+      deleteOrderHandler={this.deleteOrderHandler}
+      saveChanges={this.saveChanges} />
+      
+    }
+    return item
+
+});
+
   let completeOrders = this.state.orders.map((order, i) => {
     let item=null
     if(order.pagado && order.entregado){
@@ -140,12 +156,13 @@ class AdminLayout extends Component {
             <button onClick={this.checkout} className={classes.logoutBtn}>Logout</button>
         ) : null}
         </div>
+        <h3>Total Ordenes: {this.state.orders.length}</h3>
         <div className={classes.orderContainer}>{orders}</div>
-        <h3>Ordenes Pagadas (y no pagadas)</h3>
+        <h3>Ordenes Pagadas (y no entregadas) </h3>
         <div className={classes.pagadosContainer}>{payOrders}</div> 
-        <h3>Ordenes Entregadas (y no pagadas)</h3>
-        <div className={classes.pagadosContainer}>{payOrders}</div> 
-        <h3>Ordenes Pagadas y Entregadas</h3>
+        <h3>Ordenes Entregadas (y no pagadas) </h3>
+        <div className={classes.pagadosContainer}>{deliverOrders}</div> 
+        <h3>Ordenes Pagadas y Entregadas </h3>
          <div className={classes.completeOrdersContainer}>{completeOrders}</div> 
       </div>
     );
