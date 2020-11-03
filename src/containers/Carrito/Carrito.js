@@ -16,7 +16,6 @@ class Carrito extends Component {
   shouldComponentUpdate(nextProps, nextState){
     if(this.props.basket !== nextProps.basket 
       || this.props.price !==nextProps.price){
-      console.log('update')
       return true
     }else{
       return false
@@ -24,9 +23,7 @@ class Carrito extends Component {
   }
   
   render() {
-    console.log(this.props.basket)
     const productCards = this.props.basket.map((product, i) => <ProductCard RemoveFromBasket={this.props.onRemoveFromBasket} key={i} product={product}/>);
-
 
       return (
       <div className={classes.Carrito}>
