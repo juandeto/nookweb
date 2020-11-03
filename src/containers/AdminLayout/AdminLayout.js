@@ -141,7 +141,7 @@ class AdminLayout extends Component {
         ) : null}
         </div>
         <div className={classes.orderContainer}>{orders}</div>
-        <h3>Ordenes Pagadas (y no pagadas)</h3>
+        <h3>Ordenes Pagadas (y no entregadas)</h3>
         <div className={classes.pagadosContainer}>{payOrders}</div> 
         <h3>Ordenes Entregadas (y no pagadas)</h3>
         <div className={classes.pagadosContainer}>{payOrders}</div> 

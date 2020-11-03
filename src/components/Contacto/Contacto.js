@@ -31,6 +31,7 @@ class Contacto extends Component{
                     <span>
                         <a
                         target="_blank"
+                        rel="noopener noreferrer"
                         href="https://api.whatsapp.com/send?phone=+5491155623604o&text=%20">+54 911 5562 3604</a>
                     </span>
                     </div>
