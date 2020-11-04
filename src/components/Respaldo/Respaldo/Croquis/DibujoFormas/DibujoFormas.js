@@ -67,7 +67,7 @@ case "Esquinas Redondas":
                 );
                 break;
     default:
-        forma =<p className={classes.mensajeInicio}>Arma tu respaldo en pasos. <br /> Por favor seleccione una forma para comenzar</p>
+        forma =<p className={classes.mensajeInicio}>Arma tu respaldo en pasos. <br /> Selecciona una forma para comenzar</p>
       break;
   }
     return (
