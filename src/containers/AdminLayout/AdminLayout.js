@@ -50,6 +50,10 @@ class AdminLayout extends Component {
     arrayOrders[index].pagado = !this.state.orders[index].pagado;
 
     this.setState({orders: arrayOrders})
+    let url=`https://nookweb-5fb61.firebaseio.com/orders/${ arrayOrders[index].id}.json`;
+    axios.put(url, arrayOrders[index])
+    .then(response => '')
+    .catch(error => error)
 
   }
 
@@ -58,6 +62,10 @@ class AdminLayout extends Component {
     let index = arrayOrders.findIndex(order => order.id === id);
     arrayOrders[index].entregado = !this.state.orders[index].entregado; 
     this.setState({orders: arrayOrders})
+    let url=`https://nookweb-5fb61.firebaseio.com/orders/${arrayOrders[index].id}.json`;
+    axios.put(url, arrayOrders[index])
+    .then(response => '')
+    .catch(error => error)
   }
 
   deleteOrderHandler = (order) =>{
@@ -72,12 +80,6 @@ class AdminLayout extends Component {
     .catch(error => console.log(error))
   }
 
-  saveChanges = (order) =>{
-    let url=`https://nookweb-5fb61.firebaseio.com/orders/${order.id}.json`;
-    axios.put(url, order)
-    .then(response => '')
-    .catch(error => error)
-  }
   
 
   render() {
@@ -105,7 +107,7 @@ class AdminLayout extends Component {
         orderPagoHandler={this.orderPagoHandler}
         formaDeEnvioHandler={this.formaDeEnvioHandler}
         deleteOrderHandler={this.deleteOrderHandler}
-        saveChanges={this.saveChanges} />
+        />
         
       }
       return item
