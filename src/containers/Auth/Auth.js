@@ -16,13 +16,11 @@ class Auth extends Component {
     submitHandler(event){
         event.preventDefault();
         
-        this.props.onAuth(this.state.user, this.state.pass);
+        this.props.onAuth(this.state.user, this.state.pass)
         
-        setTimeout(() => {
-           if(this.props.token){
-            this.props.history.push('/admin-user')
-        } 
-        }, 600);
+        this.props.history.push('/');
+            
+       
         
         
 

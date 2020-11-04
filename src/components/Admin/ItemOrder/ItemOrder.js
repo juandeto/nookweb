@@ -40,9 +40,7 @@ return (
       <DataCliente cliente={props.order.orderData} />
 
     </div>
-    <button 
-  onClick={()=>props.saveChanges(props.order)}
-  className={classes.saveBtn}>Save Changes</button>
+
   </details>
 );
 }
