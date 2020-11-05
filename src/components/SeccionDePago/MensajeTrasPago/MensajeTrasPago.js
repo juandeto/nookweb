@@ -6,12 +6,16 @@ import Logo from './../../Ul/Logo/Logo';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classes from './MensajeTrasPago.module.css';
+import Axios from 'axios';
 
 
 class SeccionDePago extends Component {
   componentWillUnmount(){
     this.props.onUnmountCarrito()
   }
+ 
+
+  
   render() { 
     const mensajeTransferencia =<p className={classes.paragraph}><strong>También te enviamos los datos para realizar la transferencia</strong></p>;
     return ( 
@@ -20,9 +24,9 @@ class SeccionDePago extends Component {
                 <Logo />
               </span>
                 <section className={classes.section}>
-                <p className={classes.paragraph}>Te hemos enviado a tu email ({this.props.datosUsuario ? this.props.datosUsuario.orderData.email : null}) los datos de tu compra (caracteristicas, plazos, entrega, etc.).</p>
+                <p className={classes.paragraph}>Te hemos enviado a tu email ({this.props.location.search ? new URLSearchParams(this.props.location.search).get("email") : ""}) los datos de tu compra (caracteristicas, plazos, entrega, etc.).</p>
                 {this.props.formaDePago === 'Transferencia Bancaria' ? mensajeTransferencia : null}
-                <p className={classes.paragraph}>Pronto nos estaremos comunicando con vos al {this.props.datosUsuario ? this.props.datosUsuario.orderData.telefono : null}. Si tenes alguna duda <Link to="/contacto">no dudes en contactarnos</Link></p>
+                <p className={classes.paragraph}>Pronto nos estaremos comunicando con vos al {this.props.location.search ? new URLSearchParams(this.props.location.search).get("phone") : ""}. Si tenes alguna duda <Link to="/contacto">no dudes en contactarnos</Link></p>
                 <p className={classes.paragraph}></p>
                 </section>
             </div>
