@@ -6,7 +6,6 @@ import Logo from './../../Ul/Logo/Logo';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import classes from './MensajeTrasPago.module.css';
-import Axios from 'axios';
 
 
 class SeccionDePago extends Component {
