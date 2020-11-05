@@ -130,7 +130,45 @@ class ContactData extends Component {
     this.setState({showPriceModal: !this.state.showPriceModal})
   }
 
-  orderHandler = (event) => {
+  mercadoPago = (order) => {
+    const freeShipping = ["C.A.B.A", "G.B.A (Gran Buenos Aires)"];
+    var shippingCost   = order.formaDeEnvio === "A convenir" && !freeShipping.includes(order.orderData.provincia) ? 400 : 0;
+    var orderItems=[];
+    for(var i = 0;i<order.basket.length;i++){
+      var item = {
+        title: order.basket[i].modelo,
+        unit_price: order.basket[i].precioParticular,
+        quantity: order.basket[i].cantidad,
+      };
+      orderItems.push(item);
+    }
+    var postData = {
+      items: [
+        orderItems,
+      ],
+      name: order.orderData.nombre,
+      email: order.orderData.email,
+      number: order.orderData.telefono,
+      shipments:{
+        cost: shippingCost,
+      },
+      total_amount: order.price + shippingCost,
+    };
+    axios.post('https://excited-excited-stealer.glitch.me/mercadopago/create', {
+      headers: {
+        Authorization: 'Access-Control-Allow-Headers", "X-Requested-With, content-type',
+      },
+      data: postData,
+      order: order,
+    })
+    .then(response => {
+      return  window.location = response.data;
+    })
+  }
+
+
+
+ orderHandler = (event) => {
     this.setState({ loading: true });
     event.preventDefault();
     const formData = {};
@@ -160,20 +198,28 @@ class ContactData extends Component {
       .post("/orders.json", order)
       .then((response) => {
         if(this._isMounted){
-          this.setState({ loading: false });
+          
         }
       })
       .then(responseData =>{
-      if(this._isMounted){
+        axios.post('https://url_de_este_proyecto/emails/create', {
+          "to": `${order.orderData.email}`,
+          "subject": "Tu Compra en Nook",
+          "html": '<h1 style="text-align: center"><b><i>Nook</i></b></h1><br><h3 style="text-align:center;margin-top:-20px"><b>MARIANA LACROZE</b></h3><br><p>Hola '+order.orderData.nombre+',</p><br><p>¡Muchas gracias por tu compra!</p><p>Por favor, transferinos a nuestra cuenta: . <br>No olvides enviarnos el comprobante de transferencia a +54 9 11 55623604</p><br><p><b>Detalle de compra:</b></p><br>'+order.basket+'<p><b>Monto Total</b> = $'+order.price+'</p><br><p>Pronto nos estaremos comunicando con vos al '+order.orderData.telefono+'.</p><br><p>Saludos,</p><p>Equipo Nook</p>'
+  })
+      })
+      .then(responseData =>{
+      if(this._isMounted && order.formaDePago === 'Transferencia Bancaria'){
+        this.setState({ loading: false });
        return this.props.history.push("/pagos")
       }else{
-        return null
+        return this.mercadoPago(order);
       }
       })
       .catch((error) => console.log(error)); //this.props.onLoading());
-  };
+  }
 
-  checkValidity(value, rules) {
+  checkValidity(value, rules){
     let isValid = true;
 
     if (rules.required) {
@@ -187,7 +233,7 @@ class ContactData extends Component {
     return isValid;
   }
 
-  inputChangeHandler = (event, inputIdentifier) => {
+  inputChangeHandler(event, inputIdentifier){
     const updatedOrderForm = {
       ...this.state.orderForm,
     };
