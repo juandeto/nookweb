@@ -13,7 +13,6 @@ class MensajePagoFacil extends Component {
     this.props.onUnmountCarrito()
   }
   render() { 
-    const mensajeTransferencia =<p className={classes.paragraph}><strong>También te enviamos los datos para realizar la transferencia</strong></p>;
     return ( 
        <div className={classes.MensajePagoFacil}>
               <span className={classes.logo}>

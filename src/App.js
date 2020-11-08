@@ -15,7 +15,8 @@ import Auth from './containers/Auth/Auth';
 import Contacto from './components/Contacto/Contacto';
 import GaleriaModelos from './components/Respaldo/GaleriaModelos/GaleriaModelos';
 import QuienesSomos from './components/QuienesSomos/QuienesSomos';
-
+import MensajePagoFacil from './components/SeccionDePago/MensajePagoFacil/MensajePagoFacil';
+import MensajePagoFallido from './components/SeccionDePago/MensajePagoFallido/MensajePagoFallido';
 
 class App extends Component {
   componentDidMount(){
@@ -48,6 +49,12 @@ class App extends Component {
 
     if (this.props.history.location.pathname === "/pagos") {
       notPaying = <Route path="/pagos" component={MensajeTrasPago} />;
+    }
+ if (this.props.history.location.pathname === "/pagodiferido") {
+      notPaying = <Route path="/pagodiferido" component={MensajePagoFacil} />;
+    }
+    if (this.props.history.location.pathname === "/pagofallido") {
+      notPaying = <Route path="/pagofallido" component={MensajePagoFallido} />;
     }
 
     return notPaying;
